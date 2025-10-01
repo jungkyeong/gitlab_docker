@@ -7,13 +7,10 @@ services:
     container_name: gitlab
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'https://192.168.0.12:7743'
+        external_url 'http://192.168.0.12:7780'
         gitlab_rails['gitlab_shell_ssh_port'] = 7722
         nginx['enable'] = true
-        # nginx['listen_port'] = 80 # http
-        nginx['redirect_http_to_https'] = true # https
-        nginx['ssl_certificate'] = "/home/git/data/gitlab/ssl/gitlab.crt" # https cert
-        nginx['ssl_certificate_key'] = "/home/git/data/gitlab/ssl/gitlab.key" # https key
+        nginx['listen_port'] = 80 # http
         nginx['client_max_body_size'] = '500G'
       GITLAB_TIMEZONE: Asia/Seoul
     ports:
@@ -28,6 +25,5 @@ services:
       - '/home/git/data/gitlab/logs:/var/log/gitlab'
       - '/home/git/data/gitlab/data:/var/opt/gitlab'
       - '/home/git/data/gitlab/backups:/var/opt/gitlab/backups'
-      - '/home/git/data/gitlab/ssl:/etc/gitlab/ssl:ro' # https set
     # container size (default: 256m)
     shm_size: '8G'
