@@ -9,3 +9,5 @@ docker start gitlab
 
 # 기존 컨테이너 삭제
 docker-compose down -v
+
+## 인증서는 무조건 [IP].key 이런 식으로 생성되어야 함
